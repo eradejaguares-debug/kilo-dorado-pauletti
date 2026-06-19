@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprá tu kilo de helado Pauletti, convertí tu compra en un Kilo Dorado y participá por el Pozo Pauletti de hasta $1.000.000 en helado.">
+    <meta name="keywords" content="Pauletti, helado, Paraná, Entre Ríos, Kilo Dorado, promoción, sorteo, heladería">
+    <meta name="author" content="Pauletti Heladería">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pauletti.com.ar/kilo-dorado">
+    <meta property="og:title" content="Kilo Dorado Pauletti | Participá por $1.000.000 en Helado">
+    <meta property="og:description" content="Cada Kilo Dorado hace crecer el pozo. Cada partido de Argentina multiplica tus chances. Participá por $1.000.000 en helado.">
+    <meta property="og:image" content="https://www.pauletti.com.ar/assets/kilo-dorado-og.jpg">
+    <meta property="og:locale" content="es_AR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.pauletti.com.ar/kilo-dorado">
+    <meta property="twitter:title" content="Kilo Dorado Pauletti | Participá por $1.000.000 en Helado">
+    <meta property="twitter:description" content="Cada Kilo Dorado hace crecer el pozo. Cada partido de Argentina multiplica tus chances. Participá por $1.000.000 en helado.">
+    <meta property="twitter:image" content="https://www.pauletti.com.ar/assets/kilo-dorado-og.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <title>Kilo Dorado Pauletti | Participá por $1.000.000 en Helado</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --celeste: #75AADB;
+            --celeste-oscuro: #4A9FD8;
+            --blanco: #FFFFFF;
+            --azul-profundo: #1B3B6F;
+            --dorado: #FFD700;
+            --dorado-oscuro: #D4AF37;
+            --negro: #1A1A1A;
+            --gris: #F5F5F5;
+            --gris-oscuro: #666666;
+            --sombra: rgba(0, 0, 0, 0.15);
+            --error: #DC3545;
+            --success: #28A745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--blanco);
+            color: var(--negro);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            border-radius: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px var(--sombra);
+            width: 100%;
+        }
+
+        @media (min-width: 480px) {
+            .btn {
+                width: auto;
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            color: var(--azul-profundo);
+            animation: pulse 2s infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--blanco);
+            color: var(--azul-profundo);
+            border: 3px solid var(--dorado);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dorado);
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--blanco);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+        }
+
+        .btn-small {
+            padding: 12px 25px;
+            font-size: 13px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--celeste) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 80px 20px 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23FFD700" opacity="0.3"/></svg>');
+            background-size: 50px 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .hero-logo {
+            margin-bottom: 20px;
+        }
+
+        .hero-logo img {
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto;
+            filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3));
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--dorado);
+            color: var(--azul-profundo);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 9vw, 64px);
+            color: var(--blanco);
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 5vw, 28px);
+            color: var(--dorado);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .hero-text {
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--blanco);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .hero-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 30px 0;
+            border: 2px solid var(--dorado);
+        }
+
+        .hero-highlight p {
+            color: var(--blanco);
+            font-size: clamp(14px, 3.5vw, 17px);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .hero-highlight strong {
+            color: var(--dorado);
+            font-size: clamp(18px, 5vw, 26px);
+            display: block;
+            margin-top: 10px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+            align-items: center;
+        }
+
+        .hero-image {
+            margin: 30px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prize-counter {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .prize-counter-label {
+            color: var(--azul-profundo);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .prize-counter-amount {
+            font-size: clamp(40px, 11vw, 60px);
+            font-weight: 900;
+            color: var(--azul-profundo);
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+            line-height: 1.1;
+        }
+
+        .prize-counter-note {
+            color: var(--azul-profundo);
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: clamp(26px, 6vw, 40px);
+            color: var(--azul-profundo);
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gris-oscuro);
+            font-size: clamp(14px, 3vw, 17px);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* WHAT IS KILO DORADO */
+        .what-is {
+            background: var(--gris);
+        }
+
+        .what-is-image {
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--sombra);
+        }
+
+        .what-is-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .feature-card {
+            background: var(--blanco);
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px var(--sombra);
+            transition: transform 0.3s ease;
+            border-bottom: 5px solid var(--dorado);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: var(--azul-profundo);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* HOW TO PARTICIPATE */
+        .steps-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+            background: var(--blanco);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--sombra);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            color: var(--azul-profundo);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 22px;
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .step-content h3 {
+            color: var(--azul-profundo);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .steps-note {
+            text-align: center;
+            background: linear-gradient(135deg, var(--celeste) 0%, var(--celeste-oscuro) 100%);
+            color: var(--blanco);
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 30px;
+        }
+
+        /* MULTIPLIERS */
+        .multipliers {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--celeste) 100%);
+            color: var(--blanco);
+        }
+
+        .multipliers .section-title {
+            color: var(--blanco);
+        }
+
+        .multipliers .section-subtitle {
+            color: var(--blanco);
+            opacity: 0.9;
+        }
+
+        .multipliers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .multiplier-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid var(--dorado);
+            transition: transform 0.3s ease;
+        }
+
+        .multiplier-card:hover {
+            transform: scale(1.02);
+        }
+
+        .multiplier-card.featured {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            color: var(--azul-profundo);
+            transform: scale(1.05);
+        }
+
+        .multiplier-info h4 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .multiplier-info p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .multiplier-value {
+            font-size: 32px;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .multiplier-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dorado);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* PRIZE POOL GROWTH */
+        .progress-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: var(--blanco);
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px var(--sombra);
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            font-size: 14px;
+        }
+
+        .progress-bar-bg {
+            background: var(--gris);
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            animation: shine 2s infinite;
+        }
+
+        .progress-text {
+            color: var(--azul-profundo);
+            font-weight: 900;
+            font-size: 16px;
+            z-index: 1;
+        }
+
+        .growth-info {
+            background: var(--gris);
+            padding: 25px 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .growth-info h4 {
+            color: var(--azul-profundo);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .growth-list {
+            list-style: none;
+        }
+
+        .growth-list li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+            color: var(--gris-oscuro);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .growth-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--dorado-oscuro);
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        /* WORLD CUP SECTION */
+        .worldcup {
+            background: linear-gradient(135deg, var(--celeste) 0%, var(--blanco) 100%);
+            text-align: center;
+        }
+
+        .worldcup-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .worldcup-image {
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--sombra);
+        }
+
+        .worldcup-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .worldcup-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .worldcup p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gris-oscuro);
+            margin: 20px 0;
+        }
+
+        /* PRIZE SECTION */
+        .prize-section {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prize-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .prize-section .section-title {
+            color: var(--azul-profundo);
+            position: relative;
+            z-index: 1;
+        }
+
+        .prize-amount {
+            font-size: clamp(48px, 12vw, 80px);
+            font-weight: 900;
+            color: var(--azul-profundo);
+            margin: 30px 0;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 3px 3px 6px rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+            line-height: 1.1;
+        }
+
+        .prize-description {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prize-description p {
+            color: var(--azul-profundo);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .prize-tagline {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* LOCATIONS */
+        .locations {
+            background: var(--gris);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .location-card {
+            background: var(--blanco);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 3px 10px var(--sombra);
+            transition: transform 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateX(5px);
+        }
+
+        .location-icon {
+            background: var(--celeste);
+            color: var(--blanco);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .location-info h4 {
+            color: var(--azul-profundo);
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+
+        .location-info p {
+            color: var(--gris-oscuro);
+            font-size: 13px;
+        }
+
+        /* DASHBOARD PUBLIC */
+        .dashboard-public {
+            background: var(--blanco);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--celeste) 100%);
+            color: var(--blanco);
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px var(--sombra);
+        }
+
+        .dashboard-card.highlight {
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            color: var(--azul-profundo);
+            grid-column: 1 / -1;
+        }
+
+        .dashboard-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .dashboard-value {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--blanco);
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px var(--sombra);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background: var(--blanco);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            font-size: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--gris);
+        }
+
+        .faq-icon {
+            font-size: 20px;
+            color: var(--dorado-oscuro);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 500px;
+        }
+
+        /* FORM SECTION */
+        .registration-form {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--celeste) 100%);
+        }
+
+        .registration-form .section-title {
+            color: var(--blanco);
+        }
+
+        .registration-form .section-subtitle {
+            color: var(--blanco);
+            opacity: 0.9;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--blanco);
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--azul-profundo);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group label .required {
+            color: var(--error);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gris);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dorado);
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            background: var(--celeste);
+            color: var(--blanco);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gris-oscuro);
+            font-size: 13px;
+        }
+
+        .form-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #D4EDDA;
+            color: #155724;
+            border: 1px solid #C3E6CB;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #F8D7DA;
+            color: #721C24;
+            border: 1px solid #F5C6CB;
+            display: block;
+        }
+
+        /* CLOSING SECTION */
+        .closing {
+            background: var(--azul-profundo);
+            color: var(--blanco);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .closing-image {
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .closing-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .closing-text {
+            font-size: clamp(18px, 4vw, 24px);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 500;
+        }
+
+        .closing-text strong {
+            color: var(--dorado);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--blanco);
+            font-size: 28px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--dorado);
+        }
+
+        .legal-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #999;
+        }
+
+        .legal-text a {
+            color: var(--dorado);
+            text-decoration: underline;
+        }
+
+        /* FLOATING WHATSAPP */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: var(--blanco);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* ADMIN PANEL (Hidden by default) */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--blanco);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-header {
+            background: var(--azul-profundo);
+            color: var(--blanco);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-close {
+            background: var(--error);
+            color: var(--blanco);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-stat-card {
+            background: var(--gris);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .admin-stat-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--azul-profundo);
+        }
+
+        .admin-stat-label {
+            font-size: 14px;
+            color: var(--gris-oscuro);
+            margin-top: 5px;
+        }
+
+        .admin-table-container {
+            overflow-x: auto;
+            background: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px var(--sombra);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gris);
+        }
+
+        .admin-table th {
+            background: var(--azul-profundo);
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .admin-table td {
+            font-size: 13px;
+        }
+
+        .admin-table tr:hover {
+            background: var(--gris);
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .admin-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .admin-btn.approve {
+            background: var(--success);
+            color: var(--blanco);
+        }
+
+        .admin-btn.reject {
+            background: var(--error);
+            color: var(--blanco);
+        }
+
+        .admin-btn.view {
+            background: var(--celeste);
+            color: var(--blanco);
+        }
+
+        /* RESPONSIVE */
+        @media (min-width: 768px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .multipliers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-card.highlight {
+                grid-column: 1 / -1;
+            }
+
+            .step {
+                padding: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .multipliers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 900px;
+            }
+
+            .locations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* UTILITY CLASSES */
+        .text-center { text-align: center; }
+        .mb-20 { margin-bottom: 20px; }
+        .mb-30 { margin-bottom: 30px; }
+        .mt-30 { margin-top: 30px; }
+        .hidden { display: none; }
+
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid var(--gris);
+            border-top: 3px solid var(--dorado);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="assets/logo-pauletti.png" alt="Logo oficial de Pauletti Heladería" width="280" height="auto">
+            </div>
+            
+            <div class="hero-badge">
+                <i class="fas fa-trophy"></i> Campaña Especial
+            </div>
+            
+            <h1>KILO DORADO PAULETTI</h1>
+            
+            <p class="hero-subtitle">El camino al millón</p>
+
+            <p class="hero-text">Comprá tu kilo de helado y participá por $1.000.000 en helado.</p>
+
+            <div class="hero-highlight">
+                <p>Cada Kilo Dorado hace crecer el pozo.</p>
+                <p>Cada partido de Argentina multiplica tus chances.</p>
+                <strong>El premio: $1.000.000 en helado</strong>
+            </div>
+
+            <div class="hero-image">
+                <img src="assets/hero-helado.jpg" alt="Kilo de helado Pauletti para participar por el Kilo Dorado" loading="eager">
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#registro" class="btn btn-primary">
+                    <i class="fas fa-ice-cream"></i> Quiero mi Kilo Dorado
+                </a>
+                <a href="#como-participar" class="btn btn-secondary">
+                    Ver cómo participar
+                </a>
+            </div>
+
+            <div class="prize-counter">
+                <div class="prize-counter-label">
+                    <i class="fas fa-coins"></i> POZO ACTUAL
+                </div>
+                <div class="prize-counter-amount" id="prizeAmount">
+                    $500.000
+                </div>
+                <div class="prize-counter-note">
+                    El pozo crece con cada Kilo Dorado validado hasta llegar al millón
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT IS KILO DORADO -->
+    <section class="what-is">
+        <h2 class="section-title">¿Qué es el Kilo Dorado?</h2>
+        <p class="section-subtitle">
+            Durante la campaña, cada kilo de helado Pauletti se convierte en tu boleto al premio millonario
+        </p>
+
+        <div class="what-is-image">
+            <img src="assets/helado-variedades.jpg" alt="Variedades de helado Pauletti en pote" loading="lazy">
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🍦</div>
+                <h3>Comprás un kilo</h3>
+                <p>Cada kilo de helado Pauletti se convierte en un Kilo Dorado durante la campaña</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎟</div>
+                <h3>Recibís números</h3>
+                <p>Cada Kilo Dorado te da números para participar por el Pozo Pauletti</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚽</div>
+                <h3>Multiplicás chances</h3>
+                <p>Si juega Argentina, tus números valen más y tenés más posibilidades</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Participás por $1.000.000</h3>
+                <p>Podés llevarte el premio más grande en crédito Pauletti</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO PARTICIPATE -->
+    <section id="como-participar" class="how-to">
+        <h2 class="section-title">Cómo participar</h2>
+        <p class="section-subtitle">
+            Es muy fácil, en solo 4 pasos podés ser parte del Pozo Pauletti
+        </p>
+
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Comprá un kilo de helado Pauletti</h3>
+                    <p>Visitá cualquiera de nuestros locales participantes en Paraná y elegí tus sabores favoritos</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Registrá tu compra</h3>
+                    <p>Dejá tus datos al momento de comprar o cargá tu ticket en nuestra landing</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Tu ticket queda pendiente de validación</h3>
+                    <p>Revisaremos tu comprobante para validar tu participación</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Recibí tus números</h3>
+                    <p>Cuando se apruebe, recibís tus números para participar por el Pozo Pauletti</p>
+                </div>
+            </div>
+
+            <div class="steps-note">
+                <i class="fas fa-lightbulb"></i> Mientras más Kilos Dorados comprás, más números tenés
+            </div>
+        </div>
+    </section>
+
+    <!-- MULTIPLIERS -->
+    <section class="multipliers">
+        <h2 class="section-title">Tus chances se multiplican</h2>
+        <p class="section-subtitle">
+            Descubrí cómo aumentar tus posibilidades de ganar
+        </p>
+
+        <div class="multipliers-grid">
+            <div class="multiplier-card">
+                <div class="multiplier-info">
+                    <h4>Kilo Dorado normal</h4>
+                    <p>1 Kilo Dorado</p>
+                </div>
+                <div class="multiplier-value">1</div>
+            </div>
+
+            <div class="multiplier-card">
+                <div class="multiplier-info">
+                    <h4>Socio Club Pauletti</h4>
+                    <p>1 Kilo Dorado</p>
+                </div>
+                <div class="multiplier-value">2</div>
+            </div>
+
+            <div class="multiplier-card">
+                <div class="multiplier-info">
+                    <h4>Día que juega Argentina</h4>
+                    <p>1 Kilo Dorado</p>
+                </div>
+                <div class="multiplier-value">2</div>
+            </div>
+
+            <div class="multiplier-card featured">
+                <div class="multiplier-info">
+                    <h4>Socio + Partido Argentina</h4>
+                    <p>1 Kilo Dorado</p>
+                </div>
+                <div class="multiplier-value">3</div>
+            </div>
+        </div>
+
+        <div class="multiplier-note">
+            <i class="fas fa-star"></i> Los días de partido, el Kilo Dorado vale más
+        </div>
+    </section>
+
+    <!-- PRIZE POOL GROWTH -->
+    <section class="prize-pool">
+        <h2 class="section-title">El pozo crece</h2>
+        <p class="section-subtitle">
+            Cada Kilo Dorado vendido suma al premio final
+        </p>
+
+        <div class="progress-container">
+            <div class="progress-labels">
+                <span>Pozo inicial: $500.000</span>
+                <span>Meta: $1.000.000</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar" style="width: 0%">
+                    <span class="progress-text" id="progressPercent">0%</span>
+                </div>
+            </div>
+            <div class="text-center mt-30" style="font-weight: 700; color: var(--celeste-oscuro);">
+                <i class="fas fa-chart-line"></i> Estamos cada vez más cerca del millón
+            </div>
+        </div>
+
+        <div class="growth-info">
+            <h4>¿Cómo crece el pozo?</h4>
+            <ul class="growth-list">
+                <li>El Pozo Pauletti comienza con un monto inicial de $500.000</li>
+                <li>Cada Kilo Dorado validado hace crecer el pozo</li>
+                <li>Cada avance de Argentina en la competencia aumenta el premio</li>
+                <li>Meta final: $1.000.000 en crédito Pauletti</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- WORLD CUP SECTION -->
+    <section class="worldcup">
+        <div class="worldcup-content">
+            <div class="worldcup-icon">⚽</div>
+            <h2 class="section-title">Mientras Argentina va por la Copa, vos vas por el millón</h2>
+            
+            <div class="worldcup-image">
+                <img src="assets/helado-partido.jpg" alt="Helado Pauletti servido para mirar el partido" loading="lazy">
+            </div>
+
+            <p>
+                Cada partido se vive mejor con helado. Por eso, los días que juega Argentina, 
+                tus Kilos Dorados generan más números para participar.
+            </p>
+            
+            <p>
+                Pedí tu kilo, mirá el partido y sumá chances para ganar el premio más grande que entregamos.
+            </p>
+
+            <a href="https://wa.me/5493435707801?text=Hola,%20quiero%20pedir%20mi%20Kilo%20Dorado%20Pauletti%20para%20participar%20por%20el%20Pozo%20de%20$1.000.000%20en%20helado." 
+               class="btn btn-primary mt-30" target="_blank">
+                <i class="fab fa-whatsapp"></i> Pedir Kilo para el partido
+            </a>
+        </div>
+    </section>
+
+    <!-- PRIZE SECTION -->
+    <section class="prize-section">
+        <h2 class="section-title">PREMIO FINAL</h2>
+        
+        <div class="prize-amount">
+            $1.000.000<br>EN HELADO PAULETTI
+        </div>
+
+        <div class="prize-description">
+            <p>
+                <i class="fas fa-info-circle"></i> 
+                El premio será entregado como crédito de consumo Pauletti, no canjeable por dinero en efectivo.
+                Podés usarlo en helado, tortas, postres, cafetería y todos los productos de la marca durante el período definido.
+            </p>
+        </div>
+
+        <div class="prize-tagline">
+            <i class="fas fa-heart"></i> Un año entero de momentos Pauletti
+        </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section class="locations">
+        <h2 class="section-title">Locales participantes</h2>
+        <p class="section-subtitle">
+            Encontrá el Pauletti más cercano y comprá tu Kilo Dorado
+        </p>
+
+        <div class="locations-grid">
+            <div class="location-card">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-info">
+                    <h4>25 de Mayo</h4>
+                    <p>25 de Mayo 226</p>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-info">
+                    <h4>Churruarín</h4>
+                    <p>Av. Churruarín 201</p>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-info">
+                    <h4>Américas y Ramírez</h4>
+                    <p>Av. Francisco Ramírez 5304</p>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-info">
+                    <h4>Blas Parera</h4>
+                    <p>Blas Parera y Don Bosco</p>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-info">
+                    <h4>Almafuerte</h4>
+                    <p>Av. Almafuerte 1835</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="https://www.google.com/maps/search/Pauletti+Heladeria+Parana" 
+               class="btn btn-secondary" target="_blank">
+                <i class="fas fa-location-arrow"></i> Encontrá tu local más cercano
+            </a>
+        </div>
+    </section>
+
+    <!-- DASHBOARD PUBLIC -->
+    <section class="dashboard-public">
+        <h2 class="section-title">Estado de la campaña</h2>
+        <p class="section-subtitle">
+            Seguí en tiempo real cómo crece el Pozo Pauletti
+        </p>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card highlight">
+                <div class="dashboard-label">POZO ACTUAL</div>
+                <div class="dashboard-value" id="dashboardPool">$500.000</div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-label">KILOS DORADOS VALIDADOS</div>
+                <div class="dashboard-value" id="dashboardKilos">0</div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-label">PARTICIPANTES</div>
+                <div class="dashboard-value" id="dashboardParticipants">0</div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dashboard-label">NÚMEROS GENERADOS</div>
+                <div class="dashboard-value" id="dashboardNumbers">0</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <p class="section-subtitle">
+            Resolvemos tus dudas sobre el Kilo Dorado Pauletti
+        </p>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Qué es un Kilo Dorado?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Es cada kilo de helado Pauletti comprado durante la campaña. Cada Kilo Dorado te da números para participar por el Pozo Pauletti.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuál es el premio?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    El premio puede llegar hasta $1.000.000 en crédito Pauletti para consumir productos de la marca.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿El premio se entrega en efectivo?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    No. El premio se entrega como crédito de consumo Pauletti, no canjeable por dinero en efectivo.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cómo crece el pozo?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    El pozo crece con los Kilos Dorados validados y con los avances de Argentina durante la competencia, hasta llegar al tope definido de $1.000.000.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Los días que juega Argentina valen más?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Sí. Los días que juega Argentina, cada Kilo Dorado genera más números.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Tengo más chances si soy socio del Club Pauletti?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Sí. Los socios del Club Pauletti reciben números adicionales.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Cuándo recibo mis números?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Después de que Pauletti valide tu ticket.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Tengo que guardar el ticket?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Sí. Conservá tu ticket hasta que finalice la promoción.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>¿Dónde puedo comprar?</span>
+                    <i class="fas fa-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    En los locales Pauletti adheridos.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION FORM -->
+    <section id="registro" class="registration-form">
+        <h2 class="section-title">Registrá tu Kilo Dorado</h2>
+        <p class="section-subtitle">
+            Completá el formulario y participá por el Pozo Pauletti
+        </p>
+
+        <div class="form-container">
+            <div id="formMessage" class="form-message"></div>
+            
+            <form id="kiloForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="nombre">Nombre y apellido <span class="required">*</span></label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresá tu nombre completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="343 123 4567" pattern="[0-9\s]{10,15}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="local">Local donde compró <span class="required">*</span></label>
+                    <select id="local" name="local" required>
+                        <option value="">Seleccioná un local</option>
+                        <option value="25demayo">25 de Mayo 226</option>
+                        <option value="churruarin">Churruarín 201</option>
+                        <option value="americas">Américas y Ramírez</option>
+                        <option value="blasparera">Blas Parera</option>
+                        <option value="almafuerte">Almafuerte 1835</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticket">Número de ticket <span class="required">*</span></label>
+                    <input type="text" id="ticket" name="ticket" required placeholder="Número de comprobante">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha de compra <span class="required">*</span></label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="monto">Monto de compra <span class="required">*</span></label>
+                    <input type="number" id="monto" name="monto" required placeholder="0.00" step="0.01" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="kilos">Cantidad de kilos comprados <span class="required">*</span></label>
+                    <input type="number" id="kilos" name="kilos" required placeholder="1" min="1" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Sos socio del Club Pauletti? <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="socio" value="si" required>
+                            Sí
+                        </label>
+                        <label>
+                            <input type="radio" name="socio" value="no" required>
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="foto-ticket">Subir foto del ticket <span class="required">*</span></label>
+                    <input type="file" id="foto-ticket" name="foto-ticket" accept="image/*" required>
+                    <small style="color: var(--gris-oscuro); font-size: 12px; display: block; margin-top: 5px;">
+                        Formatos permitidos: JPG, PNG. Máximo 5MB.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Enviar participación
+                </button>
+
+                <div class="form-note">
+                    <i class="fas fa-shield-alt"></i> Tus datos están seguros. 
+                    Al enviar, aceptás los términos y condiciones de la promoción.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- CLOSING SECTION -->
+    <section class="closing">
+        <div class="closing-image">
+            <img src="assets/cierre-familiar.jpg" alt="Familia disfrutando helado Pauletti" loading="lazy">
+        </div>
+        
+        <div class="closing-text">
+            <p>
+                El Mundial se vive con amigos, familia, gritos, nervios… <strong>y helado</strong>.
+            </p>
+            <p>
+                Este año, cada kilo puede ser mucho más que un kilo.<br>
+                <strong>Puede ser tu entrada al Pozo Pauletti.</strong>
+            </p>
+        </div>
+
+        <a href="#registro" class="btn btn-primary" style="font-size: 18px; padding: 20px 50px;">
+            <i class="fas fa-trophy"></i> Quiero mi Kilo Dorado
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <img src="assets/logo-pauletti-blanco.png" alt="Logo Pauletti" width="200" height="auto">
+        </div>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/paulettiheladeria" target="_blank" title="Instagram" aria-label="Instagram Pauletti">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com/paulettiheladeria" target="_blank" title="Facebook" aria-label="Facebook Pauletti">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://wa.me/5493435707801" target="_blank" title="WhatsApp" aria-label="WhatsApp Pauletti">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+        <div class="legal-text">
+            <p>
+                <strong>Promoción válida en locales Pauletti adheridos desde el 22/07/2026 hasta el 31/08/2026.</strong>
+            </p>
+            <p style="margin-top: 10px;">
+                Premio entregado en crédito de consumo Pauletti, no canjeable por dinero en efectivo. 
+                Participan mayores de 18 años. Consultar términos y condiciones completos.
+            </p>
+            <p style="margin-top: 10px;">
+                <strong>La promoción no está patrocinada, administrada ni asociada oficialmente a FIFA, 
+                AFA ni a ninguna entidad deportiva.</strong>
+            </p>
+            <p style="margin-top: 15px;">
+                <a href="terminos-y-condiciones.html">Ver términos y condiciones completos</a>
+            </p>
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 11px; color: #666;">
+            <p>© 2026 Pauletti Heladería - Paraná, Entre Ríos, Argentina</p>
+            <p style="margin-top: 5px;">
+                <a href="https://www.pauletti.com.ar" style="color: #666;">www.pauletti.com.ar</a>
+            </p>
+        </div>
+
+        <!-- Admin access (hidden) -->
+        <div style="margin-top: 20px;">
+            <button onclick="toggleAdminPanel()" style="background: none; border: none; color: #333; cursor: pointer; font-size: 10px;">
+                Admin
+            </button>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/5493435707801?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Kilo%20Dorado%20Pauletti." 
+       class="floating-whatsapp" target="_blank" title="Contactar por WhatsApp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header">
+            <div>
+                <h2 style="margin-bottom: 5px;">Panel de Administración - Kilo Dorado</h2>
+                <p style="font-size: 14px; opacity: 0.9;">Gestión de participaciones</p>
+            </div>
+            <button class="admin-close" onclick="toggleAdminPanel()">
+                <i class="fas fa-times"></i> Cerrar
+            </button>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminTotalParticipations">0</div>
+                <div class="admin-stat-label">Total Participaciones</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminPending">0</div>
+                <div class="admin-stat-label">Pendientes</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminApproved">0</div>
+                <div class="admin-stat-label">Aprobadas</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminRejected">0</div>
+                <div class="admin-stat-label">Rechazadas</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminTotalKilos">0</div>
+                <div class="admin-stat-label">Kilos Validados</div>
+            </div>
+            <div class="admin-stat-card">
+                <div class="admin-stat-value" id="adminCurrentPool">$500.000</div>
+                <div class="admin-stat-label">Pozo Actual</div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-small" onclick="exportToCSV()">
+                <i class="fas fa-download"></i> Exportar CSV
+            </button>
+            <button class="btn btn-secondary btn-small" onclick="filterTable('all')">
+                Todos
+            </button>
+            <button class="btn btn-secondary btn-small" onclick="filterTable('pending')">
+                Pendientes
+            </button>
+            <button class="btn btn-secondary btn-small" onclick="filterTable('approved')">
+                Aprobados
+            </button>
+        </div>
+
+        <div class="admin-table-container">
+            <table class="admin-table" id="adminTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>WhatsApp</th>
+                        <th>Local</th>
+                        <th>Ticket</th>
+                        <th>Kilos</th>
+                        <th>Socio</th>
+                        <th>Números</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Dynamic content -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // CONFIGURACIÓN DE CAMPAÑA
+        const CAMPAIGN_CONFIG = {
+            startDate: '2026-07-22',
+            endDate: '2026-08-31',
+            initialPool: 500000,
+            maxPool: 1000000,
+            poolPerKilo: 500,
+            whatsappNumber: '5493435707801',
+            argentinaBonus: {
+                octavos: 100000,
+                cuartos: 150000,
+                semifinal: 200000,
+                final: 300000
+            }
+        };
+
+        // DATABASE SIMULATION (LocalStorage)
+        const DB = {
+            getParticipations: () => {
+                const data = localStorage.getItem('pauletti_participations');
+                return data ? JSON.parse(data) : [];
+            },
+            
+            saveParticipation: (participation) => {
+                const participations = DB.getParticipations();
+                participations.push(participation);
+                localStorage.setItem('pauletti_participations', JSON.stringify(participations));
+            },
+            
+            updateParticipation: (id, updates) => {
+                const participations = DB.getParticipations();
+                const index = participations.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    participations[index] = { ...participations[index], ...updates };
+                    localStorage.setItem('pauletti_participations', JSON.stringify(participations));
+                }
+            },
+            
+            checkDuplicate: (local, ticket, fecha) => {
+                const participations = DB.getParticipations();
+                return participations.some(p => 
+                    p.local === local && 
+                    p.ticket === ticket && 
+                    p.fecha === fecha
+                );
+            },
+            
+            generateId: () => {
+                const participations = DB.getParticipations();
+                return `KD-${String(participations.length + 1).padStart(6, '0')}`;
+            },
+            
+            generateNumber: () => {
+                const prefix = 'KD';
+                const participations = DB.getParticipations();
+                const totalNumbers = participations.reduce((acc, p) => acc + (p.numerosGenerados || 0), 0);
+                return `${prefix}-${String(totalNumbers + 1).padStart(6, '0')}`;
+            }
+        };
+
+        // CALCULAR POZO ACTUAL
+        function calculateCurrentPool() {
+            const participations = DB.getParticipations();
+            const approvedKilos = participations
+                .filter(p => p.estado === 'approved')
+                .reduce((acc, p) => acc + (parseInt(p.kilos) || 0), 0);
+            
+            const currentPool = Math.min(
+                CAMPAIGN_CONFIG.initialPool + (approvedKilos * CAMPAIGN_CONFIG.poolPerKilo),
+                CAMPAIGN_CONFIG.maxPool
+            );
+            
+            return {
+                pool: currentPool,
+                kilos: approvedKilos
+            };
+        }
+
+        // ACTUALIZAR DASHBOARD
+        function updateDashboard() {
+            const { pool, kilos } = calculateCurrentPool();
+            const participations = DB.getParticipations();
+            const approved = participations.filter(p => p.estado === 'approved');
+            const totalNumbers = approved.reduce((acc, p) => acc + (p.numerosGenerados || 0), 0);
+            
+            // Actualizar contador del hero
+            document.getElementById('prizeAmount').textContent = `$${pool.toLocaleString('es-AR')}`;
+            
+            // Actualizar barra de progreso
+            const progressPercent = ((pool - CAMPAIGN_CONFIG.initialPool) / (CAMPAIGN_CONFIG.maxPool - CAMPAIGN_CONFIG.initialPool)) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progressPercent)}%`;
+            
+            // Actualizar dashboard público
+            document.getElementById('dashboardPool').textContent = `$${pool.toLocaleString('es-AR')}`;
+            document.getElementById('dashboardKilos').textContent = kilos;
+            document.getElementById('dashboardParticipants').textContent = approved.length;
+            document.getElementById('dashboardNumbers').textContent = totalNumbers;
+            
+            // Actualizar admin stats
+            if (document.getElementById('adminPanel').classList.contains('active')) {
+                updateAdminStats();
+            }
+        }
+
+        // FAQ TOGGLE
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // FORM SUBMIT
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Validar fecha mínima
+            const fechaCompra = new Date(formData.get('fecha'));
+            const fechaInicio = new Date(CAMPAIGN_CONFIG.startDate);
+            if (fechaCompra < fechaInicio) {
+                showFormMessage(`La fecha de compra no puede ser anterior al ${formatDate(CAMPAIGN_CONFIG.startDate)}`, 'error');
+                return;
+            }
+            
+            // Validar fecha máxima
+            const fechaHoy = new Date();
+            if (fechaCompra > fechaHoy) {
+                showFormMessage('La fecha de compra no puede ser futura', 'error');
+                return;
+            }
+            
+            // Verificar duplicado
+            const local = formData.get('local');
+            const ticket = formData.get('ticket');
+            const fecha = formData.get('fecha');
+            
+            if (DB.checkDuplicate(local, ticket, fecha)) {
+                showFormMessage('Este ticket ya fue registrado. Si creés que es un error, escribinos por WhatsApp.', 'error');
+                return;
+            }
+            
+            // Mostrar loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; margin: 0;"></div> Enviando...';
+            
+            // Simular delay de red
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Calcular números según reglas
+            const kilos = parseInt(formData.get('kilos')) || 1;
+            const esSocio = formData.get('socio') === 'si';
+            const fechaCompraDate = new Date(fecha);
+            const esDiaArgentina = checkArgentinaMatchDay(fechaCompraDate);
+            
+            let numerosPorKilo = 1;
+            if (esSocio && esDiaArgentina) {
+                numerosPorKilo = 3;
+            } else if (esSocio || esDiaArgentina) {
+                numerosPorKilo = 2;
+            }
+            
+            const totalNumeros = kilos * numerosPorKilo;
+            
+            // Crear participación
+            const participation = {
+                id: DB.generateId(),
+                fechaCarga: new Date().toISOString(),
+                nombre: formData.get('nombre'),
+                whatsapp: formData.get('whatsapp'),
+                email: formData.get('email') || '',
+                local: local,
+                ticket: ticket,
+                fecha: fecha,
+                monto: parseFloat(formData.get('monto')),
+                kilos: kilos,
+                socio: esSocio,
+                diaArgentina: esDiaArgentina,
+                numerosPorKilo: numerosPorKilo,
+                numerosGenerados: 0, // Se generan al aprobar
+                estado: 'pending',
+                fechaValidacion: null,
+                adminValidador: null,
+                motivoRechazo: null,
+                ip: '127.0.0.1', // En producción, obtener del servidor
+                userAgent: navigator.userAgent
+            };
+            
+            // Guardar
+            DB.saveParticipation(participation);
+            
+            // Reset form
+            form.reset();
+            
+            // Mostrar mensaje de éxito
+            showFormMessage(
+                '¡Listo! Recibimos tu Kilo Dorado. Tu participación quedará pendiente de validación. ' +
+                'Si el ticket es aprobado, recibirás tus números para participar por el Pozo Pauletti. ' +
+                'Guardá tu comprobante hasta finalizar la promoción.',
+                'success'
+            );
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar participación';
+            
+            // Actualizar dashboard
+            updateDashboard();
+            
+            // Scroll to top of form
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showFormMessage(message, type) {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            setTimeout(() => {
+                formMessage.className = 'form-message';
+            }, 10000);
+        }
+
+        // CHECK ARGENTINA MATCH DAY (Simulado - en producción cargar desde API o config)
+        function checkArgentinaMatchDay(date) {
+            // Fechas de ejemplo - en producción cargar desde configuración
+            const matchDays = [
+                '2026-07-25',
+                '2026-07-29',
+                '2026-08-02',
+                '2026-08-06',
+                '2026-08-10'
+            ];
+            
+            const dateStr = date.toISOString().split('T')[0];
+            return matchDays.includes(dateStr);
+        }
+
+        // FORMAT DATE
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('es-AR');
+        }
+
+        // ADMIN PANEL FUNCTIONS
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                loadAdminData();
+            }
+        }
+
+        function loadAdminData() {
+            updateAdminStats();
+            renderAdminTable();
+        }
+
+        function updateAdminStats() {
+            const participations = DB.getParticipations();
+            const pending = participations.filter(p => p.estado === 'pending').length;
+            const approved = participations.filter(p => p.estado === 'approved').length;
+            const rejected = participations.filter(p => p.estado === 'rejected').length;
+            const totalKilos = participations
+                .filter(p => p.estado === 'approved')
+                .reduce((acc, p) => acc + (parseInt(p.kilos) || 0), 0);
+            
+            const { pool } = calculateCurrentPool();
+            
+            document.getElementById('adminTotalParticipations').textContent = participations.length;
+            document.getElementById('adminPending').textContent = pending;
+            document.getElementById('adminApproved').textContent = approved;
+            document.getElementById('adminRejected').textContent = rejected;
+            document.getElementById('adminTotalKilos').textContent = totalKilos;
+            document.getElementById('adminCurrentPool').textContent = `$${pool.toLocaleString('es-AR')}`;
+        }
+
+        function renderAdminTable(filter = 'all') {
+            const tbody = document.getElementById('adminTableBody');
+            const participations = DB.getParticipations();
+            
+            let filtered = participations;
+            if (filter === 'pending') filtered = participations.filter(p => p.estado === 'pending');
+            if (filter === 'approved') filtered = participations.filter(p => p.estado === 'approved');
+            if (filter === 'rejected') filtered = participations.filter(p => p.estado === 'rejected');
+            
+            // Sort by date (newest first)
+            filtered.sort((a, b) => new Date(b.fechaCarga) - new Date(a.fechaCarga));
+            
+            tbody.innerHTML = filtered.map(p => `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${formatDate(p.fecha)}</td>
+                    <td>${p.nombre}</td>
+                    <td>${p.whatsapp}</td>
+                    <td>${p.local}</td>
+                    <td>${p.ticket}</td>
+                    <td>${p.kilos}</td>
+                    <td>${p.socio ? 'Sí' : 'No'}</td>
+                    <td>${p.numerosGenerados || 0}</td>
+                    <td>
+                        <span class="status-badge status-${p.estado}">
+                            ${p.estado === 'pending' ? 'Pendiente' : p.estado === 'approved' ? 'Aprobado' : 'Rechazado'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="admin-actions">
+                            ${p.estado === 'pending' ? `
+                                <button class="admin-btn approve" onclick="approveParticipation('${p.id}')">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="admin-btn reject" onclick="rejectParticipation('${p.id}')">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            ` : ''}
+                            <button class="admin-btn view" onclick="viewParticipation('${p.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterTable(filter) {
+            renderAdminTable(filter);
+        }
+
+        function approveParticipation(id) {
+            const participations = DB.getParticipations();
+            const participation = participations.find(p => p.id === id);
+            
+            if (participation) {
+                // Generar números
+                const numeros = [];
+                for (let i = 0; i < participation.numerosPorKilo * participation.kilos; i++) {
+                    numeros.push(DB.generateNumber());
+                }
+                
+                DB.updateParticipation(id, {
+                    estado: 'approved',
+                    fechaValidacion: new Date().toISOString(),
+                    adminValidador: 'admin',
+                    numerosGenerados: numeros.length,
+                    numerosLista: numeros
+                });
+                
+                updateAdminStats();
+                renderAdminTable();
+                updateDashboard();
+                
+                // Enviar WhatsApp notification (simulado)
+                sendWhatsAppNotification(participation.whatsapp, numeros);
+            }
+        }
+
+        function rejectParticipation(id) {
+            const motivo = prompt('Motivo del rechazo:');
+            if (motivo) {
+                DB.updateParticipation(id, {
+                    estado: 'rejected',
+                    fechaValidacion: new Date().toISOString(),
+                    adminValidador: 'admin',
+                    motivoRechazo: motivo
+                });
+                
+                updateAdminStats();
+                renderAdminTable();
+                updateDashboard();
+            }
+        }
+
+        function viewParticipation(id) {
+            const participations = DB.getParticipations();
+            const p = participations.find(part => part.id === id);
+            
+            if (p) {
+                alert(`
+                    ID: ${p.id}
+                    Nombre: ${p.nombre}
+                    WhatsApp: ${p.whatsapp}
+                    Email: ${p.email || 'N/A'}
+                    Local: ${p.local}
+                    Ticket: ${p.ticket}
+                    Fecha: ${formatDate(p.fecha)}
+                    Monto: $${p.monto}
+                    Kilos: ${p.kilos}
+                    Socio: ${p.socio ? 'Sí' : 'No'}
+                    Día Argentina: ${p.diaArgentina ? 'Sí' : 'No'}
+                    Números por Kilo: ${p.numerosPorKilo}
+                    Total Números: ${p.numerosGenerados || 0}
+                    Estado: ${p.estado}
+                    ${p.numerosLista ? 'Números: ' + p.numerosLista.join(', ') : ''}
+                    ${p.motivoRechazo ? 'Motivo rechazo: ' + p.motivoRechazo : ''}
+                `);
+            }
+        }
+
+        function sendWhatsAppNotification(whatsapp, numeros) {
+            // En producción, integrar con WhatsApp Business API
+            console.log(`Enviando WhatsApp a ${whatsapp} con números: ${numeros.join(', ')}`);
+        }
+
+        function exportToCSV() {
+            const participations = DB.getParticipations();
+            const approved = participations.filter(p => p.estado === 'approved');
+            
+            const headers = [
+                'Número',
+                'Nombre',
+                'WhatsApp',
+                'Email',
+                'Local',
+                'Ticket',
+                'Fecha Compra',
+                'Socio',
+                'Día Argentina',
+                'ID Participación',
+                'Fecha Aprobación'
+            ];
+            
+            const rows = approved.flatMap(p => {
+                if (!p.numerosLista) return [];
+                return p.numerosLista.map(num => [
+                    num,
+                    p.nombre,
+                    p.whatsapp,
+                    p.email || '',
+                    p.local,
+                    p.ticket,
+                    formatDate(p.fecha),
+                    p.socio ? 'Sí' : 'No',
+                    p.diaArgentina ? 'Sí' : 'No',
+                    p.id,
+                    formatDate(p.fechaValidacion)
+                ]);
+            });
+            
+            const csvContent = [
+                headers.join(','),
+                ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `pauletti-kilo-dorado-${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        // SET MAX DATE FOR FORM
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('fecha');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.max = today;
+                dateInput.min = CAMPAIGN_CONFIG.startDate;
+            }
+            
+            // Initial dashboard update
+            updateDashboard();
+            
+            // Confetti effect on CTA clicks
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (!btn.closest('.admin-panel')) {
+                        createConfetti();
+                    }
+                });
+            });
+        });
+
+        // CONFETTI EFFECT
+        function createConfetti() {
+            const colors = ['#FFD700', '#75AADB', '#FFFFFF', '#1B3B6F'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.cssText = `
+                        position: fixed;
+                        width: 10px;
+                        height: 10px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        left: ${Math.random() * 100}vw;
+                        animation: confetti-fall ${Math.random() * 2 + 2}s linear;
+                        z-index: 9999;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add CSS animation for confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confetti-fall {
+                0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
