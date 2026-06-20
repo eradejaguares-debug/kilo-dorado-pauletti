@@ -1320,6 +1320,110 @@
             }
         }
 
+        /* RULETA PAULETTI */
+        .ruleta-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .ruleta-modal.active {
+            display: flex;
+        }
+
+        .ruleta-container {
+            background: var(--blanco);
+            border-radius: 25px;
+            padding: 35px 25px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: fadeIn 0.4s ease-out;
+            position: relative;
+        }
+
+        .ruleta-header h2 {
+            color: var(--azul-profundo);
+            font-size: 22px;
+            margin: 10px 0 6px;
+        }
+
+        .ruleta-header p {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .ruleta-emoji {
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .ruleta-wheel-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 10px 0 20px;
+        }
+
+        .ruleta-pointer {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            color: var(--dorado-oscuro);
+            z-index: 2;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+        }
+
+        #ruletaCanvas {
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .ruleta-result {
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .ruleta-prize-icon {
+            font-size: 52px;
+            margin-bottom: 10px;
+        }
+
+        .ruleta-result h3 {
+            color: var(--azul-profundo);
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .ruleta-result p {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .ruleta-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ruleta-actions .btn {
+            width: auto;
+            padding: 12px 22px;
+            font-size: 13px;
+        }
+
         /* UTILITY CLASSES */
         .text-center { text-align: center; }
         .mb-20 { margin-bottom: 20px; }
@@ -2050,6 +2154,38 @@
         </div>
     </div>
 
+    <!-- RULETA MODAL -->
+    <div id="ruletaModal" class="ruleta-modal">
+        <div class="ruleta-container">
+            <div class="ruleta-header">
+                <div class="ruleta-emoji">🎰</div>
+                <h2>¡Girá la Ruleta Pauletti!</h2>
+                <p>Por registrar tu Kilo Dorado tenés un premio instantáneo</p>
+            </div>
+
+            <div class="ruleta-wheel-wrapper">
+                <div class="ruleta-pointer">▼</div>
+                <canvas id="ruletaCanvas" width="280" height="280"></canvas>
+            </div>
+
+            <button id="spinBtn" class="btn btn-primary" onclick="spinWheel()" style="width:auto; padding:14px 35px; font-size:15px;">
+                <i class="fas fa-sync-alt"></i> ¡GIRAR!
+            </button>
+
+            <div id="ruletaResult" class="ruleta-result hidden">
+                <div class="ruleta-prize-icon" id="prizeIcon"></div>
+                <h3 id="prizeName"></h3>
+                <p id="prizeDesc"></p>
+                <div class="ruleta-actions">
+                    <a id="shareBtn" href="#" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Compartir
+                    </a>
+                    <button class="btn btn-secondary" onclick="closeRuleta()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script>
         // CONFIGURACIÓN DE CAMPAÑA
@@ -2271,9 +2407,9 @@
             
             // Actualizar dashboard
             updateDashboard();
-            
-            // Scroll to top of form
-            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Mostrar ruleta
+            setTimeout(() => showRuleta(), 800);
         }
 
         function showFormMessage(message, type) {
@@ -2559,6 +2695,143 @@
                     setTimeout(() => confetti.remove(), 4000);
                 }, i * 50);
             }
+        }
+
+        // RULETA PAULETTI
+        const PRIZES = [
+            { icon: '🎟', name: '1 Número Extra', desc: 'Se suma automáticamente a tu participación al validar el ticket.', color: '#FFD700', text: '#1B3B6F' },
+            { icon: '🏷', name: '10% de descuento', desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
+            { icon: '⭐', name: '¡Mucha suerte!', desc: 'Tu Kilo Dorado ya está en carrera por el $1.000.000. ¡A cruzar los dedos!', color: '#1B3B6F', text: '#FFD700' },
+            { icon: '🎁', name: 'Merchandising Pauletti', desc: 'Pasá por el local y reclamá tu regalo. Mostrá esta pantalla al vendedor.', color: '#D4AF37', text: '#1B3B6F' },
+            { icon: '🎟', name: '1 Número Extra', desc: 'Se suma automáticamente a tu participación al validar el ticket.', color: '#FFD700', text: '#1B3B6F' },
+            { icon: '🍦', name: 'Sorpresa Pauletti', desc: 'Pasá por el local y contanos que giraste la ruleta. ¡Hay una sorpresa para vos!', color: '#75AADB', text: '#FFFFFF' },
+        ];
+
+        let isSpinning = false;
+        let currentAngle = 0;
+        let wonPrizeIndex = 0;
+
+        function drawWheel(angle) {
+            const canvas = document.getElementById('ruletaCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const radius = cx - 5;
+            const sliceAngle = (2 * Math.PI) / PRIZES.length;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            PRIZES.forEach((prize, i) => {
+                const start = angle + i * sliceAngle;
+                const end = start + sliceAngle;
+
+                // Segmento
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, radius, start, end);
+                ctx.closePath();
+                ctx.fillStyle = prize.color;
+                ctx.fill();
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Texto
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(start + sliceAngle / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = prize.text;
+                ctx.font = 'bold 13px Montserrat, sans-serif';
+                ctx.fillText(prize.name.length > 14 ? prize.name.substring(0, 13) + '…' : prize.name, radius - 12, 5);
+                ctx.font = '18px serif';
+                ctx.fillText(prize.icon, radius - 8, -10);
+                ctx.restore();
+            });
+
+            // Centro
+            ctx.beginPath();
+            ctx.arc(cx, cy, 22, 0, 2 * Math.PI);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fill();
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+            ctx.fillStyle = '#1B3B6F';
+            ctx.font = 'bold 11px Montserrat, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('P', cx, cy + 4);
+        }
+
+        function showRuleta() {
+            document.getElementById('ruletaModal').classList.add('active');
+            document.getElementById('ruletaResult').classList.add('hidden');
+            document.getElementById('spinBtn').disabled = false;
+            document.getElementById('spinBtn').innerHTML = '<i class="fas fa-sync-alt"></i> ¡GIRAR!';
+            isSpinning = false;
+            currentAngle = 0;
+            drawWheel(0);
+        }
+
+        function closeRuleta() {
+            document.getElementById('ruletaModal').classList.remove('active');
+        }
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const spinBtn = document.getElementById('spinBtn');
+            spinBtn.disabled = true;
+            spinBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Girando...';
+
+            // Elegir premio aleatorio
+            wonPrizeIndex = Math.floor(Math.random() * PRIZES.length);
+
+            const sliceAngle = (2 * Math.PI) / PRIZES.length;
+            // El puntero está arriba (270°). Calculamos dónde debe quedar el segmento ganador.
+            const targetAngle = (2 * Math.PI * 5) + (Math.PI * 1.5) - (wonPrizeIndex * sliceAngle) - (sliceAngle / 2);
+
+            const startAngle = currentAngle;
+            const totalRotation = targetAngle - startAngle;
+            const duration = 4000;
+            const startTime = performance.now();
+
+            function animate(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                currentAngle = startAngle + totalRotation * eased;
+                drawWheel(currentAngle);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    isSpinning = false;
+                    showPrize();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function showPrize() {
+            const prize = PRIZES[wonPrizeIndex];
+            document.getElementById('prizeIcon').textContent = prize.icon;
+            document.getElementById('prizeName').textContent = prize.name;
+            document.getElementById('prizeDesc').textContent = prize.desc;
+
+            const shareText = encodeURIComponent(
+                `🎰 Giré la Ruleta Pauletti y gané: "${prize.name}"!\n` +
+                `¡Comprá tu Kilo Dorado y participá por $1.000.000 en helado! 🍦`
+            );
+            document.getElementById('shareBtn').href =
+                `https://wa.me/?text=${shareText}`;
+
+            document.getElementById('ruletaResult').classList.remove('hidden');
+            createConfetti();
         }
 
         // SMOOTH SCROLL
