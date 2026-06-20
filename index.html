@@ -1320,6 +1320,107 @@
             }
         }
 
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* CARD HOVERS MEJORADOS */
+        .feature-card {
+            transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .step {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .multiplier-card {
+            transition: transform 0.3s cubic-bezier(.22,.68,0,1.2), box-shadow 0.3s ease;
+        }
+
+        .multiplier-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .multiplier-card.featured:hover {
+            transform: scale(1.08);
+        }
+
+        .location-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        /* HERO PARALLAX */
+        .hero-parallax {
+            will-change: transform;
+        }
+
+        /* COUNTER ANIMATION */
+        .count-up {
+            display: inline-block;
+        }
+
+        /* SECCIÓN TITLES CON UNDERLINE */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro));
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        .multipliers .section-title::after,
+        .registration-form .section-title::after {
+            background: linear-gradient(90deg, var(--dorado), rgba(255,215,0,0.5));
+        }
+
         /* RULETA PAULETTI */
         .ruleta-modal {
             display: none;
@@ -2557,7 +2658,7 @@
         }
 
         function rejectParticipation(id) {
-            const motivo = prompt('Motivo del rechazo:');
+            const motivo = window.prompt('Motivo del rechazo:');
             if (motivo) {
                 DB.updateParticipation(id, {
                     estado: 'rejected',
@@ -2575,27 +2676,46 @@
         function viewParticipation(id) {
             const participations = DB.getParticipations();
             const p = participations.find(part => part.id === id);
-            
-            if (p) {
-                alert(`
-                    ID: ${p.id}
-                    Nombre: ${p.nombre}
-                    WhatsApp: ${p.whatsapp}
-                    Email: ${p.email || 'N/A'}
-                    Local: ${p.local}
-                    Ticket: ${p.ticket}
-                    Fecha: ${formatDate(p.fecha)}
-                    Monto: $${p.monto}
-                    Kilos: ${p.kilos}
-                    Socio: ${p.socio ? 'Sí' : 'No'}
-                    Día Argentina: ${p.diaArgentina ? 'Sí' : 'No'}
-                    Números por Kilo: ${p.numerosPorKilo}
-                    Total Números: ${p.numerosGenerados || 0}
-                    Estado: ${p.estado}
-                    ${p.numerosLista ? 'Números: ' + p.numerosLista.join(', ') : ''}
-                    ${p.motivoRechazo ? 'Motivo rechazo: ' + p.motivoRechazo : ''}
-                `);
-            }
+            if (!p) return;
+
+            // Eliminar modal previo si existe
+            const prev = document.getElementById('viewModal');
+            if (prev) prev.remove();
+
+            const modal = document.createElement('div');
+            modal.id = 'viewModal';
+            modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;';
+            modal.innerHTML = `
+                <div style="background:#fff;border-radius:16px;padding:28px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;font-family:Poppins,sans-serif;font-size:14px;">
+                    <h3 style="color:#1B3B6F;margin-bottom:16px;font-family:Montserrat,sans-serif;">${p.id} — ${p.nombre}</h3>
+                    <table style="width:100%;border-collapse:collapse;">
+                        ${[
+                            ['WhatsApp', p.whatsapp],
+                            ['Email', p.email || 'N/A'],
+                            ['Local', p.local],
+                            ['Ticket', p.ticket],
+                            ['Fecha', formatDate(p.fecha)],
+                            ['Monto', '$' + p.monto],
+                            ['Kilos', p.kilos],
+                            ['Socio', p.socio ? 'Sí' : 'No'],
+                            ['Día Argentina', p.diaArgentina ? 'Sí' : 'No'],
+                            ['Números/kilo', p.numerosPorKilo],
+                            ['Total números', p.numerosGenerados || 0],
+                            ['Estado', p.estado],
+                            p.numerosLista ? ['Números', p.numerosLista.join(', ')] : null,
+                            p.motivoRechazo ? ['Motivo rechazo', p.motivoRechazo] : null,
+                        ].filter(Boolean).map(([k,v]) => `
+                            <tr style="border-bottom:1px solid #f0f0f0;">
+                                <td style="padding:7px 10px 7px 0;color:#666;font-weight:600;white-space:nowrap;">${k}</td>
+                                <td style="padding:7px 0;color:#1A1A1A;">${v}</td>
+                            </tr>
+                        `).join('')}
+                    </table>
+                    <button onclick="document.getElementById('viewModal').remove()" style="margin-top:20px;width:100%;padding:12px;background:#1B3B6F;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:14px;">Cerrar</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
         }
 
         function sendWhatsAppNotification(whatsapp, numeros) {
@@ -2696,6 +2816,105 @@
                 }, i * 50);
             }
         }
+
+        // SCROLL REVEAL
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, entry.target.dataset.delay || 0);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.feature-card, .step, .multiplier-card, .location-card, .faq-item, .dashboard-card, .progress-container, .growth-info, .what-is-image, .worldcup-image, .closing-image, .prize-description').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.dataset.delay = (i % 4) * 100;
+            revealObserver.observe(el);
+        });
+
+        document.querySelectorAll('.section-title, .section-subtitle, .steps-note, .multiplier-note, .prize-amount, .prize-tagline').forEach(el => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
+        });
+
+        document.querySelectorAll('.hero-badge, .hero h1, .hero-subtitle, .hero-text, .hero-highlight, .hero-buttons, .prize-counter').forEach((el, i) => {
+            el.classList.add('reveal');
+            el.dataset.delay = i * 120;
+            revealObserver.observe(el);
+        });
+
+        // PARALLAX EN HERO
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroBefore = document.querySelector('.hero::before');
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent && scrollY < window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrollY * 0.25}px)`;
+            }
+        }, { passive: true });
+
+        // COUNT-UP ANIMADO
+        function animateValue(element, start, end, duration) {
+            if (!element) return;
+            const isPrice = end >= 1000;
+            const startTime = performance.now();
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(start + (end - start) * eased);
+                if (isPrice) {
+                    element.textContent = '$' + current.toLocaleString('es-AR');
+                } else {
+                    element.textContent = current;
+                }
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Animar dashboard cuando entra en viewport
+        const dashboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const { pool, kilos } = calculateCurrentPool();
+                    const participations = DB.getParticipations();
+                    const approved = participations.filter(p => p.estado === 'approved');
+                    const totalNumbers = approved.reduce((acc, p) => acc + (p.numerosGenerados || 0), 0);
+
+                    animateValue(document.getElementById('dashboardPool'), 0, pool, 1500);
+                    animateValue(document.getElementById('dashboardKilos'), 0, kilos, 1200);
+                    animateValue(document.getElementById('dashboardParticipants'), 0, approved.length, 1200);
+                    animateValue(document.getElementById('dashboardNumbers'), 0, totalNumbers, 1200);
+                    animateValue(document.getElementById('prizeAmount'), 0, pool, 2000);
+                    dashboardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const dashboardSection = document.querySelector('.dashboard-public');
+        if (dashboardSection) dashboardObserver.observe(dashboardSection);
+
+        // Animar barra de progreso cuando entra en viewport
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const { pool } = calculateCurrentPool();
+                    const pct = ((pool - CAMPAIGN_CONFIG.initialPool) / (CAMPAIGN_CONFIG.maxPool - CAMPAIGN_CONFIG.initialPool)) * 100;
+                    setTimeout(() => {
+                        document.getElementById('progressBar').style.width = `${pct}%`;
+                        document.getElementById('progressPercent').textContent = `${Math.round(pct)}%`;
+                    }, 300);
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        const progressSection = document.querySelector('.progress-container');
+        if (progressSection) progressObserver.observe(progressSection);
 
         // RULETA PAULETTI
         const PRIZES = [
