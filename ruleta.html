@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta Pauletti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --celeste: #75AADB;
+            --azul-profundo: #1B3B6F;
+            --dorado: #FFD700;
+            --dorado-oscuro: #D4AF37;
+            --blanco: #FFFFFF;
+            --gris-oscuro: #666666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--celeste) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .card {
+            background: var(--blanco);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .brand {
+            margin-bottom: 6px;
+        }
+
+        .brand img {
+            max-width: 140px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .brand-fallback {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--azul-profundo);
+        }
+
+        .tier-selector {
+            display: flex;
+            gap: 10px;
+            margin: 18px 0;
+            justify-content: center;
+        }
+
+        .tier-btn {
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 2px solid var(--dorado);
+            background: transparent;
+            color: var(--azul-profundo);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tier-btn.active {
+            background: var(--dorado);
+        }
+
+        .tier-label {
+            font-size: 13px;
+            color: var(--gris-oscuro);
+            margin-bottom: 16px;
+            min-height: 20px;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 8px 0 22px;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: var(--dorado-oscuro);
+            z-index: 2;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+        }
+
+        #ruletaCanvas {
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .spin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+            color: var(--azul-profundo);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spin-btn:disabled {
+            animation: none;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 22px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .result.hidden { display: none; }
+
+        .prize-icon { font-size: 54px; margin-bottom: 8px; }
+
+        .result h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--azul-profundo);
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .result p {
+            color: var(--gris-oscuro);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: #25D366;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .btn-wa:hover { background: #128C7E; }
+
+        .btn-reset {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: transparent;
+            color: var(--azul-profundo);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            border: 2px solid var(--dorado);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reset:hover { background: var(--dorado); }
+
+        .back-link {
+            display: block;
+            margin-top: 22px;
+            color: var(--celeste);
+            font-size: 13px;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .back-link:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+<div class="card">
+
+    <div class="brand">
+        <img src="assets/logo-pauletti.png" alt="Pauletti"
+             onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block'">
+        <div id="brandFallback" class="brand-fallback" style="display:none">Pauletti</div>
+    </div>
+
+    <h2 style="font-family:Montserrat,sans-serif;color:var(--azul-profundo);font-size:20px;margin:10px 0 4px;">
+        🎰 Ruleta Pauletti
+    </h2>
+
+    <!-- Selector de tier para testear -->
+    <div class="tier-selector">
+        <button class="tier-btn active" onclick="setTier('premium', this)">
+            +$20.000 💎
+        </button>
+        <button class="tier-btn" onclick="setTier('consolacion', this)">
+            -$20.000 🎟
+        </button>
+    </div>
+    <p class="tier-label" id="tierLabel">Premios premium activos</p>
+
+    <div class="wheel-wrapper">
+        <div class="pointer">▼</div>
+        <canvas id="ruletaCanvas" width="290" height="290"></canvas>
+    </div>
+
+    <br>
+
+    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
+        <i class="fas fa-sync-alt"></i> ¡GIRAR!
+    </button>
+
+    <div class="result hidden" id="result">
+        <div class="prize-icon" id="prizeIcon"></div>
+        <h3 id="prizeName"></h3>
+        <p id="prizeDesc"></p>
+        <div class="result-actions">
+            <a id="shareBtn" href="#" class="btn-wa" target="_blank">
+                <i class="fab fa-whatsapp"></i> Compartir
+            </a>
+            <button class="btn-reset" onclick="resetWheel()">
+                <i class="fas fa-redo"></i> Girar de nuevo
+            </button>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Volver a la landing</a>
+</div>
+
+<script>
+    const PRIZES = {
+        premium: [
+            { icon: '🎟', name: '1 Número Extra',      desc: 'Se suma a tu participación cuando validemos tu ticket.',           color: '#FFD700', text: '#1B3B6F' },
+            { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
+            { icon: '🎁', name: 'Merchandising',       desc: 'Pasá por el local y reclamá tu regalo. Mostrá esta pantalla al vendedor.', color: '#D4AF37', text: '#1B3B6F' },
+            { icon: '🍦', name: 'Sorpresa Pauletti',   desc: 'Pasá por el local y contanos que giraste la ruleta. ¡Tenemos algo para vos!', color: '#1B3B6F', text: '#FFD700' },
+            { icon: '🎟', name: '2 Números Extra',     desc: 'Dos números más para participar por el Pozo Pauletti.',           color: '#FFD700', text: '#1B3B6F' },
+            { icon: '⭐', name: '¡Suerte en el sorteo!', desc: 'Tu Kilo Dorado ya está en carrera por el $1.000.000.',          color: '#75AADB', text: '#FFFFFF' },
+        ],
+        consolacion: [
+            { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
+            { icon: '⭐', name: '¡Mucha suerte!',      desc: 'Tu participación está en carrera. ¡A cruzar los dedos por el $1.000.000!', color: '#1B3B6F', text: '#FFD700' },
+            { icon: '🍦', name: 'Sorpresa Pauletti',   desc: 'Pasá por el local y contanos que giraste la ruleta.',             color: '#D4AF37', text: '#1B3B6F' },
+            { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti.',              color: '#75AADB', text: '#FFFFFF' },
+            { icon: '🎟', name: '1 Número Extra',      desc: 'Comprá un Kilo por más de $20.000 y multiplicás tus chances.',   color: '#FFD700', text: '#1B3B6F' },
+            { icon: '⭐', name: '¡Mucha suerte!',      desc: 'Seguí comprando Kilos Dorados y aumentás tus posibilidades.',    color: '#1B3B6F', text: '#FFD700' },
+        ]
+    };
+
+    let currentTier = 'premium';
+    let isSpinning = false;
+    let currentAngle = 0;
+    let wonIndex = 0;
+
+    function setTier(tier, btn) {
+        currentTier = tier;
+        document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tierLabel').textContent =
+            tier === 'premium' ? 'Premios premium activos (ticket ≥ $20.000)' : 'Premios de consolación (ticket < $20.000)';
+        resetWheel();
+    }
+
+    function drawWheel(angle) {
+        const canvas = document.getElementById('ruletaCanvas');
+        const ctx = canvas.getContext('2d');
+        const prizes = PRIZES[currentTier];
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const radius = cx - 5;
+        const slice = (2 * Math.PI) / prizes.length;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        prizes.forEach((prize, i) => {
+            const start = angle + i * slice;
+            const end = start + slice;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, radius, start, end);
+            ctx.closePath();
+            ctx.fillStyle = prize.color;
+            ctx.fill();
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(start + slice / 2);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = prize.text;
+            ctx.font = 'bold 12px Montserrat, sans-serif';
+            const label = prize.name.length > 15 ? prize.name.substring(0, 14) + '…' : prize.name;
+            ctx.fillText(label, radius - 12, 5);
+            ctx.font = '17px serif';
+            ctx.fillText(prize.icon, radius - 8, -10);
+            ctx.restore();
+        });
+
+        // Centro
+        ctx.beginPath();
+        ctx.arc(cx, cy, 22, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+        ctx.strokeStyle = '#FFD700';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        ctx.fillStyle = '#1B3B6F';
+        ctx.font = 'bold 11px Montserrat, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('P', cx, cy + 4);
+    }
+
+    function spinWheel() {
+        if (isSpinning) return;
+        isSpinning = true;
+
+        const prizes = PRIZES[currentTier];
+        wonIndex = Math.floor(Math.random() * prizes.length);
+
+        const spinBtn = document.getElementById('spinBtn');
+        spinBtn.disabled = true;
+        spinBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Girando...';
+        document.getElementById('result').classList.add('hidden');
+
+        const slice = (2 * Math.PI) / prizes.length;
+        const target = (2 * Math.PI * 6) + (Math.PI * 1.5) - (wonIndex * slice) - (slice / 2);
+        const start = currentAngle;
+        const duration = 4200;
+        const startTime = performance.now();
+
+        function animate(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            currentAngle = start + target * eased;
+            drawWheel(currentAngle);
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                isSpinning = false;
+                showPrize();
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    function showPrize() {
+        const prize = PRIZES[currentTier][wonIndex];
+        document.getElementById('prizeIcon').textContent = prize.icon;
+        document.getElementById('prizeName').textContent = prize.name;
+        document.getElementById('prizeDesc').textContent = prize.desc;
+
+        const shareText = encodeURIComponent(
+            `🎰 Giré la Ruleta Pauletti y gané: "${prize.name}"!\n` +
+            `¡Comprá tu Kilo Dorado y participá por $1.000.000 en helado! 🍦`
+        );
+        document.getElementById('shareBtn').href = `https://wa.me/?text=${shareText}`;
+        document.getElementById('result').classList.remove('hidden');
+        createConfetti();
+
+        const spinBtn = document.getElementById('spinBtn');
+        spinBtn.disabled = false;
+        spinBtn.innerHTML = '<i class="fas fa-sync-alt"></i> ¡GIRAR!';
+    }
+
+    function resetWheel() {
+        currentAngle = 0;
+        wonIndex = 0;
+        isSpinning = false;
+        document.getElementById('result').classList.add('hidden');
+        const spinBtn = document.getElementById('spinBtn');
+        spinBtn.disabled = false;
+        spinBtn.innerHTML = '<i class="fas fa-sync-alt"></i> ¡GIRAR!';
+        drawWheel(0);
+    }
+
+    function createConfetti() {
+        const colors = ['#FFD700', '#75AADB', '#FFFFFF', '#1B3B6F'];
+        for (let i = 0; i < 35; i++) {
+            setTimeout(() => {
+                const el = document.createElement('div');
+                el.style.cssText = `position:fixed;width:10px;height:10px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}vw;top:0;border-radius:2px;animation:confetti-fall ${Math.random()*2+2}s linear;z-index:9999;pointer-events:none;`;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 4000);
+            }, i * 50);
+        }
+    }
+
+    // Init
+    drawWheel(0);
+</script>
+</body>
+</html>
