@@ -2043,89 +2043,94 @@
     <section id="registro" class="registration-form">
         <h2 class="section-title">Registrá tu Kilo Dorado</h2>
         <p class="section-subtitle">
-            Completá el formulario y participá por el Pozo Pauletti
+            Solo 4 datos y listo — ¡en menos de un minuto estás participando!
         </p>
 
         <div class="form-container">
             <div id="formMessage" class="form-message"></div>
-            
+
+            <!-- PREVIEW FOTO -->
+            <div id="fotoPreview" style="display:none; margin-bottom:20px; text-align:center;">
+                <img id="fotoImg" src="" alt="Foto del ticket"
+                     style="max-width:100%; max-height:220px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.15); object-fit:cover;">
+                <p style="margin-top:8px; font-size:12px; color:var(--gris-oscuro);">
+                    <i class="fas fa-check-circle" style="color:var(--success);"></i> Foto cargada correctamente
+                </p>
+            </div>
+
             <form id="kiloForm" onsubmit="handleSubmit(event)">
+
+                <!-- FOTO DEL TICKET -->
                 <div class="form-group">
-                    <label for="nombre">Nombre y apellido <span class="required">*</span></label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresá tu nombre completo">
+                    <label for="foto-ticket">
+                        <i class="fas fa-camera"></i> Foto del ticket <span class="required">*</span>
+                    </label>
+                    <label for="foto-ticket" id="fotoLabel" style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        padding: 30px 20px;
+                        border: 2px dashed var(--celeste);
+                        border-radius: 12px;
+                        cursor: pointer;
+                        background: #f8fbff;
+                        transition: all 0.2s ease;
+                        margin-top: 6px;
+                    ">
+                        <i class="fas fa-camera" style="font-size:32px; color:var(--celeste);"></i>
+                        <span style="font-weight:600; color:var(--azul-profundo); font-size:15px;">Sacar foto o elegir imagen</span>
+                        <span style="font-size:12px; color:var(--gris-oscuro);">JPG o PNG · Máximo 10MB</span>
+                    </label>
+                    <input type="file" id="foto-ticket" name="foto-ticket"
+                           accept="image/*" capture="environment" required
+                           style="display:none;"
+                           onchange="previewFoto(this)">
                 </div>
 
+                <!-- NOMBRE -->
                 <div class="form-group">
-                    <label for="whatsapp">WhatsApp <span class="required">*</span></label>
-                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="343 123 4567" pattern="[0-9\s]{10,15}">
+                    <label for="nombre">
+                        <i class="fas fa-user"></i> Nombre y apellido <span class="required">*</span>
+                    </label>
+                    <input type="text" id="nombre" name="nombre" required
+                           placeholder="Juan García" autocomplete="name">
                 </div>
 
+                <!-- WHATSAPP -->
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com">
+                    <label for="whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp <span class="required">*</span>
+                    </label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required
+                           placeholder="343 123 4567"
+                           pattern="[0-9\s\+\-]{8,15}"
+                           autocomplete="tel">
+                    <small style="color:var(--gris-oscuro);font-size:12px;display:block;margin-top:5px;">
+                        Te avisamos cuando validemos tu ticket
+                    </small>
                 </div>
 
+                <!-- MONTO -->
                 <div class="form-group">
-                    <label for="local">Local donde compró <span class="required">*</span></label>
-                    <select id="local" name="local" required>
-                        <option value="">Seleccioná un local</option>
-                        <option value="25demayo">25 de Mayo 226</option>
-                        <option value="churruarin">Churruarín 201</option>
-                        <option value="americas">Américas y Ramírez</option>
-                        <option value="blasparera">Blas Parera</option>
-                        <option value="almafuerte">Almafuerte 1835</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="ticket">Número de ticket <span class="required">*</span></label>
-                    <input type="text" id="ticket" name="ticket" required placeholder="Número de comprobante">
-                </div>
-
-                <div class="form-group">
-                    <label for="fecha">Fecha de compra <span class="required">*</span></label>
-                    <input type="date" id="fecha" name="fecha" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="monto">Monto de compra <span class="required">*</span></label>
-                    <input type="number" id="monto" name="monto" required placeholder="0.00" step="0.01" min="0">
-                </div>
-
-                <div class="form-group">
-                    <label for="kilos">Cantidad de kilos comprados <span class="required">*</span></label>
-                    <input type="number" id="kilos" name="kilos" required placeholder="1" min="1" value="1">
-                </div>
-
-                <div class="form-group">
-                    <label>¿Sos socio del Club Pauletti? <span class="required">*</span></label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="socio" value="si" required>
-                            Sí
-                        </label>
-                        <label>
-                            <input type="radio" name="socio" value="no" required>
-                            No
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="foto-ticket">Subir foto del ticket <span class="required">*</span></label>
-                    <input type="file" id="foto-ticket" name="foto-ticket" accept="image/*" required>
-                    <small style="color: var(--gris-oscuro); font-size: 12px; display: block; margin-top: 5px;">
-                        Formatos permitidos: JPG, PNG. Máximo 5MB.
+                    <label for="monto">
+                        <i class="fas fa-receipt"></i> Monto del ticket <span class="required">*</span>
+                    </label>
+                    <input type="number" id="monto" name="monto" required
+                           placeholder="Ej: 25000" min="1" step="1">
+                    <small style="color:var(--gris-oscuro);font-size:12px;display:block;margin-top:5px;">
+                        El monto que figura en tu comprobante
                     </small>
                 </div>
 
                 <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Enviar participación
+                    <i class="fas fa-paper-plane"></i> Enviar y girar la ruleta
                 </button>
 
-                <div class="form-note">
-                    <i class="fas fa-shield-alt"></i> Tus datos están seguros. 
-                    Al enviar, aceptás los términos y condiciones de la promoción.
+                <div class="form-note" style="margin-top:16px;">
+                    <i class="fas fa-shield-alt"></i> Tus datos están seguros.
+                    Al enviar aceptás los <a href="terminos-y-condiciones.html" style="color:var(--azul-profundo);">términos y condiciones</a>.
                 </div>
             </form>
         </div>
@@ -2327,6 +2332,7 @@
             initialPool: 500000,
             maxPool: 1000000,
             poolPerKilo: 500,
+            montoMinimoPremium: 20000,
             whatsappNumber: '5493435707801',
             argentinaBonus: {
                 octavos: 100000,
@@ -2439,91 +2445,87 @@
             }
         }
 
+        // PREVIEW FOTO
+        function previewFoto(input) {
+            const file = input.files[0];
+            if (!file) return;
+            if (file.size > 10 * 1024 * 1024) {
+                showFormMessage('La foto no puede superar los 10MB.', 'error');
+                input.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('fotoImg').src = e.target.result;
+                document.getElementById('fotoPreview').style.display = 'block';
+                document.getElementById('fotoLabel').style.borderColor = 'var(--success)';
+                document.getElementById('fotoLabel').style.background = '#f0fff4';
+            };
+            reader.readAsDataURL(file);
+        }
+
         // FORM SUBMIT
         async function handleSubmit(event) {
             event.preventDefault();
-            
+
             const form = event.target;
             const formData = new FormData(form);
             const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            
-            // Validar fecha mínima
-            const fechaCompra = new Date(formData.get('fecha'));
-            const fechaInicio = new Date(CAMPAIGN_CONFIG.startDate);
-            if (fechaCompra < fechaInicio) {
-                showFormMessage(`La fecha de compra no puede ser anterior al ${formatDate(CAMPAIGN_CONFIG.startDate)}`, 'error');
+
+            const nombre  = formData.get('nombre')?.trim();
+            const whatsapp = formData.get('whatsapp')?.trim();
+            const monto   = parseFloat(formData.get('monto'));
+            const foto    = formData.get('foto-ticket');
+
+            if (!foto || foto.size === 0) {
+                showFormMessage('Por favor sacá o adjuntá una foto del ticket.', 'error');
                 return;
             }
-            
-            // Validar fecha máxima
-            const fechaHoy = new Date();
-            if (fechaCompra > fechaHoy) {
-                showFormMessage('La fecha de compra no puede ser futura', 'error');
+            if (!nombre) {
+                showFormMessage('Ingresá tu nombre completo.', 'error');
                 return;
             }
-            
-            // Verificar duplicado
-            const local = formData.get('local');
-            const ticket = formData.get('ticket');
-            const fecha = formData.get('fecha');
-            
-            if (DB.checkDuplicate(local, ticket, fecha)) {
-                showFormMessage('Este ticket ya fue registrado. Si creés que es un error, escribinos por WhatsApp.', 'error');
+            if (!whatsapp) {
+                showFormMessage('Ingresá tu número de WhatsApp.', 'error');
                 return;
             }
-            
-            // Mostrar loading
+            if (!monto || monto <= 0) {
+                showFormMessage('Ingresá el monto del ticket.', 'error');
+                return;
+            }
+
+            // Loading
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px; margin: 0;"></div> Enviando...';
-            
-            // Simular delay de red
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Calcular números según reglas
-            const kilos = parseInt(formData.get('kilos')) || 1;
-            const esSocio = formData.get('socio') === 'si';
-            const fechaCompraDate = new Date(fecha);
-            const esDiaArgentina = checkArgentinaMatchDay(fechaCompraDate);
-            
-            let numerosPorKilo = 1;
-            if (esSocio && esDiaArgentina) {
-                numerosPorKilo = 3;
-            } else if (esSocio || esDiaArgentina) {
-                numerosPorKilo = 2;
-            }
-            
-            const totalNumeros = kilos * numerosPorKilo;
-            
+            submitBtn.innerHTML = '<div class="spinner" style="width:20px;height:20px;margin:0;"></div> Enviando...';
+
+            await new Promise(resolve => setTimeout(resolve, 1200));
+
+            // Determinar tier de ruleta según monto
+            const esPremium = monto >= CAMPAIGN_CONFIG.montoMinimoPremium;
+
             // Crear participación
             const participation = {
                 id: DB.generateId(),
                 fechaCarga: new Date().toISOString(),
-                nombre: formData.get('nombre'),
-                whatsapp: formData.get('whatsapp'),
-                email: formData.get('email') || '',
-                local: local,
-                ticket: ticket,
-                fecha: fecha,
-                monto: parseFloat(formData.get('monto')),
-                kilos: kilos,
-                socio: esSocio,
-                diaArgentina: esDiaArgentina,
-                numerosPorKilo: numerosPorKilo,
-                numerosGenerados: 0, // Se generan al aprobar
+                nombre,
+                whatsapp,
+                monto,
+                tierRuleta: esPremium ? 'premium' : 'consolacion',
+                numerosGenerados: 0,
                 estado: 'pending',
                 fechaValidacion: null,
                 adminValidador: null,
                 motivoRechazo: null,
-                ip: '127.0.0.1', // En producción, obtener del servidor
                 userAgent: navigator.userAgent
             };
-            
-            // Guardar
+
             DB.saveParticipation(participation);
-            
+
             // Reset form
             form.reset();
+            document.getElementById('fotoPreview').style.display = 'none';
+            document.getElementById('fotoLabel').style.borderColor = 'var(--celeste)';
+            document.getElementById('fotoLabel').style.background = '#f8fbff';
             
             // Mostrar mensaje de éxito
             showFormMessage(
@@ -2540,8 +2542,8 @@
             // Actualizar dashboard
             updateDashboard();
 
-            // Mostrar ruleta
-            setTimeout(() => showRuleta(), 800);
+            // Mostrar ruleta con tier según monto
+            setTimeout(() => showRuleta(esPremium ? 'premium' : 'consolacion'), 800);
         }
 
         function showFormMessage(message, type) {
@@ -2948,14 +2950,26 @@
         if (progressSection) progressObserver.observe(progressSection);
 
         // RULETA PAULETTI
-        const PRIZES = [
-            { icon: '🎟', name: '1 Número Extra', desc: 'Se suma automáticamente a tu participación al validar el ticket.', color: '#FFD700', text: '#1B3B6F' },
-            { icon: '🏷', name: '10% de descuento', desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
-            { icon: '⭐', name: '¡Mucha suerte!', desc: 'Tu Kilo Dorado ya está en carrera por el $1.000.000. ¡A cruzar los dedos!', color: '#1B3B6F', text: '#FFD700' },
-            { icon: '🎁', name: 'Merchandising Pauletti', desc: 'Pasá por el local y reclamá tu regalo. Mostrá esta pantalla al vendedor.', color: '#D4AF37', text: '#1B3B6F' },
-            { icon: '🎟', name: '1 Número Extra', desc: 'Se suma automáticamente a tu participación al validar el ticket.', color: '#FFD700', text: '#1B3B6F' },
-            { icon: '🍦', name: 'Sorpresa Pauletti', desc: 'Pasá por el local y contanos que giraste la ruleta. ¡Hay una sorpresa para vos!', color: '#75AADB', text: '#FFFFFF' },
-        ];
+        const PRIZES = {
+            premium: [
+                { icon: '🎟', name: '1 Número Extra',      desc: 'Se suma a tu participación cuando validemos tu ticket.',           color: '#FFD700', text: '#1B3B6F' },
+                { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
+                { icon: '🎁', name: 'Merchandising',       desc: 'Pasá por el local y reclamá tu regalo. Mostrá esta pantalla al vendedor.', color: '#D4AF37', text: '#1B3B6F' },
+                { icon: '🍦', name: 'Sorpresa Pauletti',   desc: 'Pasá por el local y contanos que giraste la ruleta. ¡Tenemos algo para vos!', color: '#1B3B6F', text: '#FFD700' },
+                { icon: '🎟', name: '2 Números Extra',     desc: 'Dos números más para participar por el Pozo Pauletti.',           color: '#FFD700', text: '#1B3B6F' },
+                { icon: '⭐', name: '¡Suerte en el sorteo!', desc: 'Tu Kilo Dorado ya está en carrera por el $1.000.000.',          color: '#75AADB', text: '#FFFFFF' },
+            ],
+            consolacion: [
+                { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti. Mostrá esta pantalla en caja.', color: '#75AADB', text: '#FFFFFF' },
+                { icon: '⭐', name: '¡Mucha suerte!',      desc: 'Tu participación está en carrera. ¡A cruzar los dedos por el $1.000.000!', color: '#1B3B6F', text: '#FFD700' },
+                { icon: '🍦', name: 'Sorpresa Pauletti',   desc: 'Pasá por el local y contanos que giraste la ruleta.',             color: '#D4AF37', text: '#1B3B6F' },
+                { icon: '🏷', name: '10% de descuento',    desc: 'En tu próxima compra en cualquier local Pauletti.',              color: '#75AADB', text: '#FFFFFF' },
+                { icon: '🎟', name: '1 Número Extra',      desc: 'Comprá por más de $20.000 y multiplicás tus chances.',           color: '#FFD700', text: '#1B3B6F' },
+                { icon: '⭐', name: '¡Mucha suerte!',      desc: 'Seguí comprando Kilos Dorados y aumentás tus posibilidades.',    color: '#1B3B6F', text: '#FFD700' },
+            ]
+        };
+
+        let ruletaTier = 'premium';
 
         let isSpinning = false;
         let currentAngle = 0;
@@ -2968,11 +2982,12 @@
             const cx = canvas.width / 2;
             const cy = canvas.height / 2;
             const radius = cx - 5;
-            const sliceAngle = (2 * Math.PI) / PRIZES.length;
+            const prizes = PRIZES[ruletaTier];
+            const sliceAngle = (2 * Math.PI) / prizes.length;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            PRIZES.forEach((prize, i) => {
+            prizes.forEach((prize, i) => {
                 const start = angle + i * sliceAngle;
                 const end = start + sliceAngle;
 
@@ -3014,13 +3029,15 @@
             ctx.fillText('P', cx, cy + 4);
         }
 
-        function showRuleta() {
+        function showRuleta(tier = 'premium') {
+            ruletaTier = tier;
             document.getElementById('ruletaModal').classList.add('active');
             document.getElementById('ruletaResult').classList.add('hidden');
             document.getElementById('spinBtn').disabled = false;
             document.getElementById('spinBtn').innerHTML = '<i class="fas fa-sync-alt"></i> ¡GIRAR!';
             isSpinning = false;
             currentAngle = 0;
+            wonPrizeIndex = 0;
             drawWheel(0);
         }
 
@@ -3037,7 +3054,7 @@
             spinBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Girando...';
 
             // Elegir premio aleatorio
-            wonPrizeIndex = Math.floor(Math.random() * PRIZES.length);
+            wonPrizeIndex = Math.floor(Math.random() * PRIZES[ruletaTier].length);
 
             const sliceAngle = (2 * Math.PI) / PRIZES.length;
             // El puntero está arriba (270°). Calculamos dónde debe quedar el segmento ganador.
@@ -3068,7 +3085,7 @@
         }
 
         function showPrize() {
-            const prize = PRIZES[wonPrizeIndex];
+            const prize = PRIZES[ruletaTier][wonPrizeIndex];
             document.getElementById('prizeIcon').textContent = prize.icon;
             document.getElementById('prizeName').textContent = prize.name;
             document.getElementById('prizeDesc').textContent = prize.desc;
